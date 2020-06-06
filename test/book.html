@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>jQuery Mobile</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+		<script>
+			current_company = "yes24";
+			current_genre = "종합";
+
+			var books = [
+				{
+					title : "애쓰지 않고 편안하게",
+					writer : "김수현",
+					price : {paper : 13500, ebook: 94500} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/584/16358456.jpg?type=m140&udate=20200526",
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90266627",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791130629636&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240541088"
+					},
+					genre:"에세이",
+					rank:{
+						yes24:"2",
+						gyobo:"3",
+						aladin:"5"
+					}
+				},
+				{
+					title : "더 해빙",
+					writer : "이서윤, 홍주연",
+					price : {paper : 14400, ebook: 11250} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/162/735/16273522.jpg?type=m140&udate=20200530",
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/89309569",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&linkClass=&barcode=9791190382175",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ISBN=K022637311&start=pnaver_02"
+					},
+					genre:"자기 계발",
+					rank:{
+						yes24:"1",
+						gyobo:"1",
+						aladin:"3"
+					}
+				},
+				{
+					title : "코로나 투자 전쟁",
+					writer : "정채진, 박석중, 이광수, 김한진, 김일구",
+					price : {paper : 15120, ebook: 9900} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/566/16356650.jpg?type=m140&udate=20200606" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90233128",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791196831059&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240349013"
+					},
+					genre:"경제 경영",
+					rank:{
+						yes24:"3",
+						gyobo:"4",
+						aladin:"9"
+					}
+				},
+				{
+					title : "마법천자문 48",
+					writer : "김현수",
+					price : {paper : 10800, ebook: 86400} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/621/16362118.jpg?type=m140&udate=20200519" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90309256",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788950987749&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240816415"
+					},
+					genre:"어린이",
+					rank:{
+						yes24:"5",
+						gyobo:"19",
+						aladin:"200"
+					}
+				},
+				{
+					title : "기억 1",
+					writer : "베르나르 베르베르",
+					price : {paper : 13320, ebook: 9900} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/572/16357295.jpg?type=m140&udate=20200515" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90248119",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788932920337&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240436684"
+					},
+					genre:"소설",
+					rank:{
+						yes24:"6",
+						gyobo:"10",
+						aladin:"10"
+					}
+				},
+				{
+					title : "기억 2",
+					writer : "베르나르 베르베르",
+					price : {paper : 13320, ebook: 9900} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/572/16357298.jpg?type=m140&udate=20200515" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90248133",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788932920344&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240436960"
+					},
+					genre:"소설",
+					rank:{
+						yes24:"9",
+						gyobo:"15",
+						aladin:"12"
+					}
+				},
+				{
+					title : "시선으로부터",
+					writer : "정세랑",
+					price : {paper : 12600, ebook: 0} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/674/16367438.jpg?type=m140&udate=20200606" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90367403",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788954672214&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=241313700"
+					},
+					genre:"소설",
+					rank:{
+						yes24:"18",
+						gyobo:"20",
+						aladin:"1"
+					}
+				},
+				{
+					title : "아몬드",
+					writer : "손원평",
+					price : {paper : 10800, ebook: 7560} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/118/022/11802243.jpg?type=m140&udate=20200519" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/37300128",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788936434267&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=106366621"
+					},
+					genre:"소설",
+					rank:{
+						yes24:"36",
+						gyobo:"52",
+						aladin:"71"
+					}
+				},
+				{
+					title : "페스트",
+					writer : "알베르 카뮈",
+					price : {paper : 11700, ebook: 8190} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/066/073/06607390.jpg?type=m140&udate=20200416" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/4827619",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788937462672&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=11267326"
+					},
+					genre:"소설",
+					rank:{
+						yes24:"49",
+						gyobo:"54",
+						aladin:"38"
+					}
+				},
+				{
+					title : "흔한남매 안 흔한 일기 2",
+					writer : "강효미",
+					price : {paper : 10800, ebook: 0} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/581/16358186.jpg?type=m140&udate=20200515" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90233028",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791164135158&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240507720"
+					},
+					genre:"어린이",
+					rank:{
+						yes24:"14",
+						gyobo:"46",
+						aladin:"200"
+					}
+				},
+				{
+					title : "Go Go 카카오프렌즈 14",
+					writer : "김미영",
+					price : {paper : 10800, ebook: 0} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/163/614/16361415.jpg?type=m140&udate=20200518" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/90233018",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788950987756&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=240753455"
+					},
+					genre:"어린이",
+					rank:{
+						yes24:"15",
+						gyobo:"21",
+						aladin:"200"
+					}
+				},
+				{
+					title : "만복이네 떡집",
+					writer : "김리리",
+					price : {paper : 7650, ebook: 0} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/062/895/06289560.jpg?type=m140&udate=20200411" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/3906369",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788949161341&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=7165205"
+					},
+					genre:"어린이",
+					rank:{
+						yes24:"42",
+						gyobo:"141",
+						aladin:"200"
+					}
+				},
+				{
+					title : "설민석의 한국사 대모험 13",
+					writer : "설민석",
+					price : {paper : 10800, ebook : 8100} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/162/919/16291998.jpg?type=m140&udate=20200603" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/89484458",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791165382650&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=235357026"
+					},
+					genre:"어린이",
+					rank:{
+						yes24:"37",
+						gyobo:"200",
+						aladin:"200"
+					}
+				},
+				{
+					title : "내가 원하는 것을 나도 모를 때",
+					writer : "전승환",
+					price : {paper : 14400, ebook : 10080},
+					img : "https://bookthumb-phinf.pstatic.net/cover/160/336/16033672.jpg?type=m1",
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/85927898",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791130627878&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=225080432"
+					},
+					genre:"인문",
+					rank:{
+						yes24:"10",
+						gyobo:"16",
+						aladin:"200"
+					}
+				},
+				{
+					title : "당신이 옳다",
+					writer : "정혜신",
+					price : {paper : 14220, ebook: 8530} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/140/279/14027973.jpg?type=m140&udate=20200514" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/64694842",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788965746669&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=169387318"
+					},
+					genre:"인문",
+					rank:{
+						yes24:"57",
+						gyobo:"37",
+						aladin:"200"
+					}
+				},
+				{
+					title : "타인의 해석",
+					writer : "말콤 글래드웰",
+					price : {paper : 16650, ebook: 11250} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/162/831/16283133.jpg?type=m140&udate=20200530" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/89404482",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788934985747&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=234661516"
+					},
+					genre:"인문",
+					rank:{
+						yes24:"45",
+						gyobo:"200",
+						aladin:"200"
+					}
+				},
+				{
+					title : "사피엔스",
+					writer : "유발 하라리" ,
+					price : {paper : 19800, ebook: 12960} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/097/807/09780781.jpg?type=m140&udate=20200519" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/23030284",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788934972464&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=56868780"
+					},
+					genre:"인문",
+					rank:{
+						yes24:"66",
+						gyobo:"65",
+						aladin:"83"
+					}
+				},
+				{
+					title : "팩트풀니스",
+					writer : "한스 로슬링",
+					price : {paper : 17820, ebook: 11880} ,
+					img : "https://bookthumb-phinf.pstatic.net/cover/145/943/14594377.jpg?type=m140&udate=20200426" ,
+					url : {
+						yes24:"http://www.yes24.com/Product/Goods/69724044",
+						gyobo:"http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788934985068&orderClick=LAG&Kc=",
+						aladin:"https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=팩트풀니스&x=5&y=13"
+					},
+					genre:"인문",
+					rank:{
+						yes24:"76",
+						gyobo:"80",
+						aladin:"200"
+					}
+				},
+			];
+
+			function set_detail ( index ) {
+
+				$('#detail_page #book_img').attr('src', books[index].img);
+				$('#detail_page #title').html(books[index].title);
+				$('#detail_page #book_title').html(books[index].title);
+				$('#detail_page #book_writer').html(books[index].writer);
+				$('#detail_page #pbook_price').html(books[index].price.paper);
+				
+				$('#go_y').attr('href', books[index].url.yes24);
+
+				if(books[index].price.ebook == 0)  {
+					$('#detail_page #ebook_price').html("ebook이 존재하지 않음.");
+				
+				}
+				else
+					$('#detail_page #ebook_price').html(books[index].price.ebook);
+			}
+
+			function refresh_list ( category, company ) {
+				var i = 0;
+				var search_i = 0;
+				var books_i = 0;
+
+				var output_i_arr = new Array();
+				var copy_form = $('#book_previewer').clone();
+
+				$('#book_list').html('');
+
+				// ----- search genre
+				search_i = 0
+			
+				if(category == "종합") {
+					for( i = 0; i < books.length; i++ )
+						output_i_arr[i] = i;
+				}
+				else {
+					for( i = 0; i < books.length; i++ ) {
+						if( books[i].genre == category ) {
+							output_i_arr[search_i] = i;
+							search_i++;
+						}
+					}
+				}
+
+				// ----- sort by rank
+				var min_i = 0;
+				var temp = 0;
+
+				for( i = 0; i < output_i_arr.length; i++) {
+					min_i = i;
+					
+					for( var j = i; j < output_i_arr.length; j++) {
+					//	console.log(books[output_i_arr[min_i]].title, ":", books[output_i_arr[min_i]].rank[company],
+					//	 books[output_i_arr[j]].title, ":", books[output_i_arr[min_i]].rank[company],);
+
+						if( books[output_i_arr[min_i]].rank[company] > books[output_i_arr[j]].rank[company]) {
+							min_i = j;
+						}
+					}
+
+					temp 				= output_i_arr[i];
+					output_i_arr[i] 	= output_i_arr[min_i];
+					output_i_arr[min_i] = temp;
+				}
+				
+				for( i = 1; i <= output_i_arr.length; i++ ) {
+					books_i = output_i_arr[i-1];
+
+					copy_form.appendTo('#book_list');
+					
+					$('#book_list #book_previewer:nth-child(' + i + ') a').attr('name', books_i);
+					$('#book_list #book_previewer:nth-child(' + i + ') a img').attr('src', books[books_i].img);
+					$('#book_list #book_previewer:nth-child(' + i + ') a #title').html(books[books_i].title);
+					
+					if(books[books_i].rank[company] < 200){
+						$('#book_list #book_previewer:nth-child(' + i + ') a #list_rank').html(books[books_i].rank[company]);
+					}
+					else {
+						$('#book_list #book_previewer:nth-child(' + i + ') a #list_rank').html("-");
+					}
+
+					copy_form = $('#book_previewer').clone();
+				}
+
+				i = 1;
+			}
+
+			function change_company(__company) {
+				current_company = __company
+			}
+
+			$(document).ready(function(){
+				var i = 1;
+				var is_start;
+				
+				refresh_list("종합", "yes24");
+
+				$("#company_y").click(function(){
+					current_company = "yes24";
+					refresh_list(current_genre, current_company);
+				});
+				$("#company_g").click(function(){
+					current_company = "gyobo";
+					refresh_list(current_genre, current_company);
+				});
+				$("#company_a").click(function(){
+					current_company = "aladin";
+					refresh_list(current_genre, current_company);
+				});
+
+				$('#all').click(function(){
+					current_genre = "종합";
+					refresh_list(current_genre, current_company);
+				});
+
+				$('#novel').click(function(){
+					current_genre = "소설";
+					refresh_list(current_genre, current_company);
+				});
+
+				$('#kids').click(function(){
+					current_genre = "어린이";
+					refresh_list(current_genre, current_company);
+				});
+
+				$('#human').click(function(){
+					current_genre = "인문";
+					refresh_list(current_genre, current_company);
+				});
+
+				$('#book_previewer a').click(function(){
+					i = $(this).attr('name');
+
+					set_detail(i);
+				});
+
+			});
+			
+		</script>
+
+		<style>
+			#detial_content {
+				margin:0px; padding:0px;
+			}
+
+			#detail_img {
+				width: 100%;
+			}
+			
+			#detail_img > #book_img {
+				width: 60%;
+				padding-left: 20%; padding-right: 20%;
+				padding-top: 20px; padding-bottom: 20px;
+			}
+
+			#book_info {
+				width: 100%;
+				background-color: lightgrey;
+				padding-left: 20px; padding-right: 20px;
+				padding-top: 2.5px; padding-bottom: 2.5px;
+				box-shadow: 0px 1px 2.5px;
+			}
+
+			#img_td {
+				width: 25%;
+			}
+			#title_td {
+				width: 50%;
+			}
+			#rank_td {
+				width: 25%;
+			}
+
+			#book_previewer  #book_img{
+				height: 100px;
+			}
+
+			#rank_td {
+				text-align: center;
+				font-size: 14px;
+				color: grey;
+			}
+
+			#book_price {
+				margin-top: 15px;
+			}
+
+		</style>
+	<body>
+
+		<!-- *************************     MAIN PAGE     ****************************** -->
+		
+		<div data-role="page" id="main_page">
+			<div data-role="header" data-role="fixed">
+
+				<h1> 이번주 베스트 셀러 </h1>
+
+				<div data-role="navbar" id="company_category">
+					<ul>
+						<li> <a href="#" data-role="button" id="company_y">YES24</a> </li>
+						<li> <a href="#" data-role="button" id="company_g">교보문구</a> </li>
+						<li> <a href="#" data-role="button" id="company_a">알라딘</a> </li>
+					</ul>
+				</div>
+
+				<div data-role="navbar" id="company_category">
+					<ul>
+						<li> <a href="#" data-role="button" id="all">종합</a> </li>
+						<li> <a href="#" data-role="button" id="novel">소설</a> </li>
+						<li> <a href="#" data-role="button" id="kids">어린이</a> </li>
+						<li> <a href="#" data-role="button" id="human">인문</a> </li>
+					</ul>
+				</div>
+				
+			</div>
+
+			<div data-role="content">
+				<ul data-role="listview" id="book_list">
+					<li id="book_previewer" >
+						<a href="#detail_page" data-role="button" name="0">
+
+							<table border="0" width="100%">
+								<td width="25%" align="left">
+									<img id="book_img" src="q_mark.png" />
+								</td>
+								<td width="50%" align="left">
+									<h1 id="title">  </h1>
+								</td>
+								<td width="25%" align="right" id="rank_td">
+									<b>(순위)</b><br/><b id="list_rank">-</b>
+								</td>
+							</table>
+							
+							
+							
+						</a>
+					</li>
+				</ul>
+
+				
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<h4> 1705075 김형준 </h4>
+			</div>
+		</div>
+
+		<!-- *************************    DETAIL PAGE    ****************************** -->
+
+		<div data-role="page" id="detail_page">
+
+			<div data-role="header" data-position="fixed" data-add-back-btn="true" data-back-btn-text="이전">
+
+				<h1 id="title"> UNTITLE </h1>
+				
+			</div>
+
+			<div data-role="content" id="detial_content">
+
+				<div id="detail_img">
+					<img id="book_img" src="q_mark.png" />
+				</div>
+
+				<div id="book_info">
+					<h2 id="book_title"> UNTITLE </h2>
+					<p id="book_writer"> NO NAME </p>
+				</div>
+				
+				<div id="book_price">
+					<table border="0" width="100%">
+						<tr>
+							<td width="30%" align="right"> 책 가격 : </td>
+							<td id="pbook_price" style="float:left;">가격</td>
+						</tr>
+						<tr>
+							<td width="30%" align="right"> e-Book 가격 : </td>
+							<td id="ebook_price" style="float:left;">가격</td>
+						</tr>
+					</table>
+				</div>
+
+				<div id="go_buy">
+					<h3> 구매하러 가기 </h3>
+					<div data-role="navbar" id="company_category">
+						<ul>
+							<li> <a href="#" data-role="button" id="go_y">YES24</a> </li>
+							<li> <a href="#" data-role="button" id="go_g">교보문구</a> </li>
+							<li> <a href="#" data-role="button" id="go_a">알라딘</a> </li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<div data-role="footer" data-position="fixed">
+				<h4> 1705075 김형준 </h4>
+			</div>
+
+		</div>
+	</body>
+</html>
